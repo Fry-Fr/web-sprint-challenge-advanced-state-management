@@ -4,20 +4,26 @@ export const FETCH_SMURF =  "FETCH_SMURF";
 export const GET_SUCCESS = "GET_SUCCESS";
 export const GET_ERROR = "GET_ERROR";
 export const ADD_SMURF = "ADD_SMURF";
+export const SET_ERROR = "SET_ERROR";
 
 export const fetchSmurf = ()=>(dispatch)=>{
     dispatch({type: FETCH_SMURF})
     axios.get('http://localhost:3333/smurfs')
     .then(res=>{
-        console.log(res)
-        dispatch({type: GET_SUCCESS, payload: res.data})
+        setTimeout(()=>{
+            dispatch({type: GET_SUCCESS, payload: res.data})
+        },1000)
     })
     .catch(err=>{
-        console.log(err)
+        console.error(err)
+        dispatch({type: GET_ERROR, payload: "Network Error!"})
     })
 }
-export const addSmurf = (data)=>{
-    return { type: ADD_SMURF, payload: data }
+export const addSmurf = (formData)=>{
+    return { type: ADD_SMURF, payload: formData }
+}
+export const setError = (error)=>{
+    return { type: SET_ERROR, payload: error}
 }
 
 //Task List:

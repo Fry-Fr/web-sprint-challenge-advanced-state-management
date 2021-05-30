@@ -27,7 +27,9 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state)=>{}
+const mapStateToProps = (state)=>{
+  return{}
+}
 export default connect(mapStateToProps,{fetchSmurf}) (App);
 
 //Task List:
